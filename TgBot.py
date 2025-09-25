@@ -1,4 +1,4 @@
-from telegram.ext import Application, CommandHandler, MessageHandler, filters
+from telegram.ext import Application, CommandHandler, MessageHandler, filters, CallbackQueryHandler
 from Command import Command
 
 
@@ -14,6 +14,7 @@ class TgBot:
     def add_handler(self):
         self.app.add_handler(CommandHandler('start', self.command.start))
         self.app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, self.command.contact_me))
+        self.app.add_handler(CallbackQueryHandler(self.command.processing_client))
 
 
 
